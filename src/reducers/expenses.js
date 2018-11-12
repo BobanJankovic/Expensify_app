@@ -13,14 +13,21 @@ export default (state = expensesReducerDefaultState, action) => {
       
     case 'EDIT_EXPENSE':
       return state.map((expense) => {
-        if(expense.id===action.id){
+        if (expense.id === action.id){
            // console.log(action.updates);
            //console.log(expense);
            //uzima nas stari objekat expense ceo i overriduje njegov jedini key amount iz updates objekta
-         return {...expense, ...action.updates}
+         console.log("ovo je radilo")
+         return {
+           ...expense, 
+           ...action.updates
+         };
           
         }else {
-          expense;
+          //problem je bio jer ovde nisam napisao return i kad naidje  na prvi dispatch 
+          //gde nije mecovao id on ne vrati objekat vrati undefined i odma tu slomi aplikaciju ne dodje do 3 dispatcha koji mecuje id
+          console.log("uso i ovde")
+          return expense;
         }
       });
     default:

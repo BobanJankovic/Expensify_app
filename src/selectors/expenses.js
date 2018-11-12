@@ -1,11 +1,12 @@
 //expenses-arej sa objektima
-export default (expenses, {text,sortBy, startDate, endDate})=> {
+//kada ga exportujem default u importu mogu da napisem ime koje god hocu.
+
+export default (expenses, {text, sortBy, startDate, endDate})=> {
   return expenses.filter((expense)=>{
     const startDateMatch= typeof startDate !== "number" || expense.createdAt >= startDate;
     const endDateMatch= typeof startDate !== "number" || expense.createdAt <= endDate;
-   // figure out if expenses.description has the text variable string inside of it
-
-    const textMatch=expense.description.toLowerCase().includes(text);
+   // figure out if expense.description has the text variable string inside of it
+    const textMatch=expense.description.toLowerCase().includes(text.toLowerCase());
 
     return startDateMatch && endDateMatch && textMatch;
   }).sort((a,b)=>{

@@ -1,9 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import ExpenseList from "../components/ExpenseList";
-export const ExpensePage = () => (
+
+
+const ExpensePage = (props) => (
     <div>
     This is from expsense Page
+    
     <ExpenseList />
     </div>
 );
 
+const mapStateToProps = (state)=> {
+  return {
+    expenses:state.expenses,
+    filters:state.filters
+  };
+};
+export default connect()(ExpensePage);
