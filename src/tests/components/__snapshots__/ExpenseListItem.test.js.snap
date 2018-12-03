@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ExpenseList correctly 1`] = `
+<div>
+  <div>
+    <div
+      key="1"
+    >
+      <p>
+        <Link
+          replace={false}
+          to="/edit/1"
+        >
+          Gum
+        </Link>
+        :
+        195
+         created at : 
+        0
+      </p>
+    </div>
+    <div
+      key="2"
+    >
+      <p>
+        <Link
+          replace={false}
+          to="/edit/2"
+        >
+          Rent
+        </Link>
+        :
+        109500
+         created at : 
+        -345600000
+      </p>
+    </div>
+    <div
+      key="3"
+    >
+      <p>
+        <Link
+          replace={false}
+          to="/edit/3"
+        >
+          Credit Card
+        </Link>
+        :
+        4500
+         created at : 
+        345600000
+      </p>
+    </div>
+  </div>
+</div>
+`;

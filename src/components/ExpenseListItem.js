@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 
 //connect redux component to the redux store
-const ExpenseListItem= (props)=> (
+export const ExpenseListItem= (props)=> (
 <div>
   <div>
     {props.expenses.length===0 && <p>Please add an expense</p>}

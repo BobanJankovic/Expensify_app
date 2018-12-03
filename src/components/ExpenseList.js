@@ -6,7 +6,7 @@ import Dropdown from "../components/Dropdown";
 
 
 //connect redux component to the redux store
-const ExpenseList= (props)=> (
+export const ExpenseList= (props)=> (
 <div>
   <h1>Boban Jankovic je car</h1>
   <Dropdown />

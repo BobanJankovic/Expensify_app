@@ -1,6 +1,6 @@
 
 
-
+/*
 
 
 
@@ -35,7 +35,8 @@ store.subscribe(() => {
 // store.dispatch(removeExpense({ id: expenseOne.expense.id }));
 // store.dispatch(editExpense(expenseTwo.expense.id, { amount: 500 }));
 
- 
+
+
 // store.dispatch(setTextFilter());
 
  //store.dispatch(sortByAmount());
@@ -64,3 +65,31 @@ const demoState = {
     endDate: undefined
   }
 };
+------------------------------------------------------------------------------------------------
+import React from 'react';
+import { connect } from 'react-redux';
+import AddForm from '../components/AddExpense';
+
+import { startAddExpenses } from '../actions/expenses';
+
+export class CreateExpense extends React.Component {
+  onSubmit = (expense) => {
+    this.props.startAddExpenses(expense);
+    this.props.history.push('/');
+  };
+  render() {
+    return (
+      <div>
+        <AddForm onSubmit={this.onSubmit} />
+      </div>
+      
+    );
+  }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  startAddExpenses: (expense) => dispatch(startAddExpenses(expense))
+});
+
+export default connect(undefined, mapDispatchToProps)(CreateExpense);
+*/

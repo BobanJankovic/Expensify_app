@@ -6,6 +6,7 @@ import {addExpense} from '../src/actions/expenses';
 import {setTextFilter} from '../src/actions/filters'
 import configureStore from '../src/store/configureStore';
 import {Provider} from 'react-redux';
+import './firebase/firebase';
 
 
   const store = configureStore();

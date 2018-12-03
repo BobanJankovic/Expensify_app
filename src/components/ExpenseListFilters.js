@@ -9,6 +9,9 @@ class ExpenseListFilter extends React.Component {
     this.props.dispatch(setStartDate(startDate));
     this.props.dispatch(setEndDate(endDate));
   };
+    onFocusChange = (calendarFocused) => {
+    this.setState(() => ({ calendarFocused }));
+  };
     render() {
       return (
         <div>
@@ -22,7 +25,7 @@ class ExpenseListFilter extends React.Component {
             //endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
             onDatesChange={this.onDatesChange} // PropTypes.func.isRequired,
             //focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-            //onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+            onFocusChange={this.onFocusChange}
 />
         </div>
       );
