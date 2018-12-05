@@ -1,10 +1,24 @@
-import {startAddExpense, addExpense, removeExpense, editExpense} from '../../actions/expenses';
+import {startAddExpense, addExpense, removeExpense, editExpense, setExpenses, startSetExpenses} from '../../actions/expenses';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import {expenses} from '../fixtures/expenses';
 import database from '../../firebase/firebase';
 
 const createMockStore = configureMockStore([thunk]);
+
+
+beforeEach((done) => {
+  const expensesData = {};
+  expenses.forEach(({ id, description, note, amount, createdAt }) => {
+    //daj ime objektu po id-ju , a objekat neka sadrzi ove 4 vrednosti i ubaci u firebase
+    expensesData[id] = { description, note, amount, createdAt };
+  });
+  database.ref('expenses').set(expensesData).then(() => done());
+});
+
+
+
+
 
 test('should addExpense', ()=> {
   const result = addExpense(expenses[0])
@@ -109,4 +123,25 @@ test('should editExpense', ()=> {
   
 });
 
+//console.log(expenses); arej objekata iz fixture
+test('should setup set expense action object with data', () => {
+  const result = setExpenses(expenses);
+  expect(result).toEqual({
+    type: 'SET_EXPENSES',
+    expenses
+  });
+  
+});
 
+
+test('should fetch the expenses from firebase', (done) => {
+  const store = createMockStore({});
+  store.dispatch(startSetExpenses()).then(() => {
+    const actions = store.getActions();
+    expect(actions[0]).toEqual({
+      type: 'SET_EXPENSES',
+      expenses
+    });
+    done();
+  });
+});

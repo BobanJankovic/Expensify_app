@@ -17,11 +17,6 @@ const config = {
    export { firebase, database as default };
 
 
-
-
-
-
-
 //To read data at a path and listen for changes, use the on()
 
 database.ref('expenses').on('value', function(snapShot) {
@@ -32,25 +27,25 @@ database.ref('expenses').on('value', function(snapShot) {
       ...childSnapshot.val()
     })
   })
-  console.log(expenses);
+  //console.log(expenses);
 });
 
 // child_removed
 database.ref('expenses').on('child_removed', (snapshot) => {
-  console.log(snapshot.key, snapshot.val());
+  //console.log(snapshot.key, snapshot.val());
 });
 
 // child_changed
 database.ref('expenses').on('child_changed', (snapshot) => {
-  console.log(snapshot.key, snapshot.val());
+  //console.log(snapshot.key, snapshot.val());
 });
 
 // child_added
 database.ref('expenses').on('child_added', (snapshot) => {
-  console.log(snapshot.key, snapshot.val());
+  //console.log(snapshot.key, snapshot.val());
 });
 
-
+/*
 database.ref('expenses').push({
   description: "tv-waeeesh",
   note: "Wasdddhing tv-s",
@@ -59,7 +54,7 @@ database.ref('expenses').push({
 })
 
 
-/*
+
 ------------------------------------------------------------------------------------
 Dec 2nd, 2018
 1
