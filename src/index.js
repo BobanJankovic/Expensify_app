@@ -35,7 +35,7 @@ const jsx= (
    <AppRouter />
   </Provider>
 );
-
+// render loading message to the screen until we get the data from firebase dok ne vrati promise 
 ReactDOM.render(<p>Loading...</p>, document.getElementById('root'));
 store.dispatch(startSetExpenses()).then( () => {
  ReactDOM.render(jsx, document.getElementById('root'));

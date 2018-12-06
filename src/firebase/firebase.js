@@ -45,6 +45,9 @@ database.ref('expenses').on('child_added', (snapshot) => {
   //console.log(snapshot.key, snapshot.val());
 });
 
+
+
+
 /*
 database.ref('expenses').push({
   description: "tv-waeeesh",

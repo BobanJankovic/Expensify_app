@@ -33,10 +33,7 @@ export const startAddExpense = ( {description = '', note = '', amount = 0, creat
 
 
 
-export const removeExpense = ({ id } = {}) => ({
-  type: 'REMOVE_EXPENSE',
-  id
-});
+
 // EDIT_EXPENSE
 export const editExpense = (id, updates) => ({
   type: 'EDIT_EXPENSE',
@@ -74,5 +71,45 @@ export const startSetExpenses = ( ) => {
    };
   };
 
+// expense removal challange
+
+// 1.Create startRemoveExpense (same call signature as removeExpense)
+// 2. Test startRemoveExpense with 'should remove expenses from firebase'
+// 3. Use startRemoveExpense in EditExpensePage instead of removeExpense
+// 4. Adjust EditExpensePage tests
 
 
+export const removeExpense = ({ id } = {}) => ({
+  type: 'REMOVE_EXPENSE',
+  id
+});
+
+
+export const startRemoveExpense = ( { id } = {}) => { 
+  return (dispatch) => {
+    return database.ref(`expenses/${id}`).remove().then(() => {
+      dispatch(removeExpense({ id }));
+    });
+   
+   
+  };
+};
+
+/*
+
+
+// dam mu id kao parameatar onda on radi iterejsn kroz snapsjhot kad naidje na zadati id izbaci ga iz firebase-a
+export const startRemoveExpense = (key) => { 
+  return (dispatch) => {
+     database.ref('expenses').child(key).once('value').then((snapShot)=> {
+     var expense = snapShot.val();
+     snapShot.key.remove();
+     console.log(expense);
+  dispatch(removeExpense({ key } = {}));
+})
+
+   
+   };
+  };
+
+*/
