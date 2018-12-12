@@ -34,12 +34,6 @@ export const startAddExpense = ( {description = '', note = '', amount = 0, creat
 
 
 
-// EDIT_EXPENSE
-export const editExpense = (id, updates) => ({
-  type: 'EDIT_EXPENSE',
-  id,
-  updates
-});
 
 //SET_EXPENSES
 export const setExpenses = (expenses) => ({
@@ -64,7 +58,7 @@ export const startSetExpenses = ( ) => {
       ...childSnapshot.val()
     })
   })
-  console.log(expensesArray);
+  //console.log(expensesArray);
    dispatch(setExpenses(expensesArray));
 })
    
@@ -94,6 +88,45 @@ export const startRemoveExpense = ( { id } = {}) => {
    
   };
 };
+
+// Expense Update Challenge
+
+// 1. Create startEditExpense (same call signature as editExpense)
+// 2. Test startEditExpense with " sholud edit expense from firebase"
+// 3. Use startEditExpense in EditExpensePage instead of editExpense
+// 4. Adjust EditExpensePage tests
+
+
+// EDIT_EXPENSE
+export const editExpense = (id, updates) => ({
+  type: 'EDIT_EXPENSE',
+  id,
+  updates
+});
+
+export const startEditExpense = (id, updates) => {
+  return (dispatch) => {
+    return database.ref(`expenses/${id}`).update(updates).then(() => {
+      dispatch(editExpense(id, updates));
+    });
+   
+   
+  };
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 

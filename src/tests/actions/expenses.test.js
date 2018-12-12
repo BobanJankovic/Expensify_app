@@ -1,4 +1,4 @@
-import {startAddExpense, addExpense, removeExpense, editExpense, setExpenses, startSetExpenses} from '../../actions/expenses';
+import {startAddExpense, startEditExpense, addExpense, removeExpense, editExpense, setExpenses, startSetExpenses} from '../../actions/expenses';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import {expenses} from '../fixtures/expenses';
@@ -110,18 +110,6 @@ test('should removeExpense', ()=> {
 
 
 
-test('should editExpense', ()=> {
- const result = editExpense("abch", { amount: 500 });
-  expect(result).toEqual(
-    {
-      id: "abch", 
-      type: "EDIT_EXPENSE", 
-      updates: {amount: 500}
-    }
-
-  );
-  
-});
 
 //console.log(expenses); arej objekata iz fixture
 test('should setup set expense action object with data', () => {
@@ -145,3 +133,71 @@ test('should fetch the expenses from firebase', (done) => {
     done();
   });
 });
+
+
+
+test('should editExpense', ()=> {
+ const result = editExpense("abch", { amount: 500 });
+  expect(result).toEqual(
+    {
+      id: "abch", 
+      type: "EDIT_EXPENSE", 
+      updates: {amount: 500}
+    }
+
+  );
+  
+});
+
+
+test('sholud edit expense from firebase', (done) => {
+  const store = createMockStore({});
+  store.dispatch(startEditExpense(1, 
+  {
+    amount:200,
+    createdAt:200,
+    description:"Boban",
+    note:"Coban"
+
+  })).then(() => {
+    const actions = store.getActions();
+      expect(actions[0]).toEqual({
+        type: 'EDIT_EXPENSE',
+        id:1,
+        updates: {
+          amount:200,
+          createdAt:200,
+          description:"Boban",
+          note:"Coban"
+        }
+    });
+    return database.ref(`expenses/1`).once('value');
+    
+  }).then((snapshot) => {
+    expect(snapshot.val().amount).toBe(200);
+  });
+  done();
+});
+
+
+
+/*
+// EDIT_EXPENSE
+export const editExpense = (id, updates) => ({
+  type: 'EDIT_EXPENSE',
+  id,
+  updates
+});
+
+export const startEditExpense = (id, updates) => {
+  return (dispatch) => {
+    return database.ref(`expenses/${id}`).set(updates).then(() => {
+      dispatch(editExpense(id, updates));
+    });
+   
+   
+  };
+};
+
+
+*/ 

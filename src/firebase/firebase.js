@@ -48,6 +48,8 @@ database.ref('expenses').on('child_added', (snapshot) => {
 
 
 
+
+
 /*
 database.ref('expenses').push({
   description: "tv-waeeesh",
