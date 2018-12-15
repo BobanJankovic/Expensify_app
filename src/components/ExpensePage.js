@@ -4,7 +4,7 @@ import ExpenseList from "../components/ExpenseList";
 
 
 const ExpensePage = (props) => (
-    <div>
+    <div className="expensePage">
     This is from expsense Page
     
     <ExpenseList />

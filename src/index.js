@@ -7,7 +7,8 @@ import {startSetExpenses} from '../src/actions/expenses';
 import {setTextFilter} from '../src/actions/filters'
 import configureStore from '../src/store/configureStore';
 import {Provider} from 'react-redux';
-import './firebase/firebase';
+import {firebase} from './firebase/firebase';
+import '../src/App.css';
 
 
   const store = configureStore();
@@ -35,6 +36,8 @@ const jsx= (
    <AppRouter />
   </Provider>
 );
+
+
 // render loading message to the screen until we get the data from firebase dok ne vrati promise 
 ReactDOM.render(<p>Loading...</p>, document.getElementById('root'));
 store.dispatch(startSetExpenses()).then( () => {
@@ -42,7 +45,15 @@ store.dispatch(startSetExpenses()).then( () => {
 
 });
 
-console.log(startSetExpenses());
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log('log in');
+  } else {
+    console.log('log out');
+  }
+});
+
+
 
 
  

@@ -26,3 +26,12 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+.head {
+  background-color: #222;
+}
+.expensePage {
+  background-color: green;
+}
+.loginPage {
+  background-color: blue;
+}

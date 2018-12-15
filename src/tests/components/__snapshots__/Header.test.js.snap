@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render Header correctly 1`] = `
-<header>
+<header
+  className="head"
+>
   <h1>
     Expensify
   </h1>
@@ -18,6 +20,20 @@ exports[`should render Header correctly 1`] = `
     to="/"
   >
     ExpensePage
+  </NavLink>
+  <NavLink
+    activeClassName="selected"
+    activeStyle={
+      Object {
+        "color": "pink",
+        "fontWeight": "bold",
+      }
+    }
+    ariaCurrent="true"
+    exact={true}
+    to="/dashboard"
+  >
+    Dashboard Page
   </NavLink>
   <NavLink
     activeClassName="selected"
@@ -71,5 +87,10 @@ exports[`should render Header correctly 1`] = `
   >
     Edit
   </NavLink>
+  <button
+    onClick={[Function]}
+  >
+    Log out
+  </button>
 </header>
 `;
