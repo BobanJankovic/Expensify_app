@@ -38,6 +38,7 @@ test('should call onSubmit prop for valid form submission', () => {
   });
 });
 */ 
+
 test('should call startLogout on button click', () => {
   const onSubmitSpy = jest.fn();
   const wrapper = shallow(<Header startLogout={ onSubmitSpy }  />);
@@ -45,4 +46,5 @@ test('should call startLogout on button click', () => {
  wrapper.find('button').simulate('click');
   expect(onSubmitSpy).toHaveBeenCalled();
 });
+
 
