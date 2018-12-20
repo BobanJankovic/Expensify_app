@@ -49,15 +49,15 @@ firebase.auth().onAuthStateChanged((user) => {
     console.log(store.getState().auth.uid);
     store.dispatch(startSetExpenses()).then( () => {
       renderApp();
-      if ( history.location.pathname === '/' ) {
-        store.dispatch(logout());
-        history.push('/dashboard');
+     if ( history.location.pathname === '/' ) {
+     history.push('/dashboard');
       }
     });
   } else {
+    console.log('logOut');
     renderApp();
     history.push('/');
-    console.log('log out');
+   
   }
 });
 

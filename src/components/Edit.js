@@ -6,7 +6,7 @@ import { startEditExpense,addExpense, removeExpense, startRemoveExpense } from '
 
 
 const Edit = (props) => {
-   console.log(props);
+   
   return (
     <div>
       This is edit od {props.match.params.id}
@@ -16,8 +16,7 @@ const Edit = (props) => {
       //props.expense pristupio sam iz stora i poslao je preko propsa
       expenseedit={props.expense}
        onSubmit={(expensed) => {
-         console.log(expensed)
-         console.log(startEditExpense(props.expense.id, expensed))
+        
          props.dispatch(startEditExpense(props.expense.id, expensed));
           //props.dispatch(addExpense(expense));
           props.history.push('/');
