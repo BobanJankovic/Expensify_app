@@ -6,13 +6,13 @@ import { startEditExpense,addExpense, removeExpense, startRemoveExpense } from '
 
 
 const Edit = (props) => {
-   
+   console.log(props);
   return (
     <div>
-      This is edit od {props.match.params.id}
+    
       
       <AddForm
-      //zbog linije koda 12 mi se vrednosti pojave u poljima koje treba da izmenim
+      //  This is edit od {props.expense.id}{props.expense.id} zbog linije koda 12 mi se vrednosti pojave u poljima koje treba da izmenim
       //props.expense pristupio sam iz stora i poslao je preko propsa
       expenseedit={props.expense}
        onSubmit={(expensed) => {
@@ -24,7 +24,7 @@ const Edit = (props) => {
         }}
          />
           <button  onClick={()=>{
-            props.dispatch(startRemoveExpense({ id: props.match.params.id}))
+            props.dispatch(startRemoveExpense({ id: props.expense.id}))
             props.history.push('/');
             }}>remove</button>
     </div>
@@ -33,8 +33,10 @@ const Edit = (props) => {
 
 
 const mapStateToProps = (state, props) => {
+  console.log(props);
   return {
-    expense: state.expenses.find((expense) => expense.id === props.match.params.id)
+    
+    expense: state.expenses.find(expense => expense.id === props.match.params.id )
   };
 };
 

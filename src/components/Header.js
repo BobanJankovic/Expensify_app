@@ -9,7 +9,6 @@ export const Header = (props) => (
     <NavLink to="/" activeClassName="selected" activeStyle={{fontWeight: 'bold',color: 'blue'}} exact={true}>ExpensePage</NavLink>
     <NavLink to="/dashboard" activeClassName="selected" activeStyle={{fontWeight: 'bold',color: 'pink'}} exact={true}>Dashboard Page</NavLink>
     <NavLink to="/createexpense" activeClassName="selected" activeStyle={{fontWeight: 'bold',color: 'green'}}  >Create Expense</NavLink>
-    <NavLink to="/help" activeClassName="selected" activeStyle={{fontWeight: 'bold',color: 'yellow'}}>Help</NavLink>
     <NavLink to="/about" activeClassName="selected" activeStyle={{fontWeight: 'bold',color: 'gray'}}>About</NavLink>
     <NavLink to="/edit/:id" activeClassName="selected" activeStyle={{fontWeight: 'bold',color: 'green'}}>Edit</NavLink>
     <button onClick={ props.startLogout }>Log out</button>

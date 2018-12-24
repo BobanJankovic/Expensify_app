@@ -21,9 +21,10 @@ export const addExpense = (expense) => {
 export const startAddExpense = ( {description = '', note = '', amount = 0, createdAt=0 } = {}) => { 
   //funkcija umesto objekta vraca funkciju(koja radi 2 stvari
   // 1)pusuje nas expense objekat u firebase, a onda ako je promise uspesan dispacuje i salje u reducer )
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
    const expense = {description, note, amount, createdAt };
-   return database.ref('expenses').push(expense).then((ref)=>{
+   return database.ref(`users/${uid}/expenses`).push(expense).then((ref)=>{
      dispatch(addExpense( {id: ref.key, description, note, amount, createdAt }));
      //add expense vrati objekat koji u sebi ima type:add_expense i objekat koji se zove expense 
      //i ima vredonsti parametara iznad
@@ -49,8 +50,9 @@ export const setExpenses = (expenses) => ({
 
 
 export const startSetExpenses = ( ) => { 
-  return (dispatch) => {
-   return database.ref('expenses').once('value').then((snapShot)=> {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+   return database.ref(`users/${uid}/expenses`).once('value').then((snapShot)=> {
   const expensesArray=[];
   snapShot.forEach((childSnapshot)=>{
     expensesArray.push({
@@ -80,8 +82,9 @@ export const removeExpense = ({ id } = {}) => ({
 
 
 export const startRemoveExpense = ( { id } = {}) => { 
-  return (dispatch) => {
-    return database.ref(`expenses/${id}`).remove().then(() => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/expenses/${id}`).remove().then(() => {
       dispatch(removeExpense({ id }));
     });
    
@@ -105,8 +108,9 @@ export const editExpense = (id, updates) => ({
 });
 
 export const startEditExpense = (id, updates) => {
-  return (dispatch) => {
-    return database.ref(`expenses/${id}`).update(updates).then(() => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/expenses/${id}`).update(updates).then(() => {
       dispatch(editExpense(id, updates));
     });
    

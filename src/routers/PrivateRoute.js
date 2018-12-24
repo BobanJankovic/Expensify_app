@@ -14,14 +14,14 @@ import { Route, Redirect } from 'react-router-dom';
 export const PrivateRoute = ({
   isAuthenticated, 
   component: Component,
-  //...rest
+  ...rest
 
 
 }) => (
   console.log(`ovo je ${isAuthenticated}`),
   
 
- <Route /*{...rest}*/ component = {(props) => (
+ <Route {...rest} component = {(props) => (
 isAuthenticated ? (
   <Redirect to="/dashboard" />,
   <div>
@@ -49,10 +49,10 @@ export default connect(mapStateToProps)(PrivateRoute);
 
 
 
-
-
-
-
+// 1. CreatePUblic Route
+// 2. Redirect to /dashboard if logged in
+// 3. Render component if not logged in
+// 4. Use it for the LoginPage
 
 
 

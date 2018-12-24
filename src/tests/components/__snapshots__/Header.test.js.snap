@@ -52,19 +52,6 @@ exports[`should render Header correctly 1`] = `
     activeClassName="selected"
     activeStyle={
       Object {
-        "color": "yellow",
-        "fontWeight": "bold",
-      }
-    }
-    ariaCurrent="true"
-    to="/help"
-  >
-    Help
-  </NavLink>
-  <NavLink
-    activeClassName="selected"
-    activeStyle={
-      Object {
         "color": "gray",
         "fontWeight": "bold",
       }
